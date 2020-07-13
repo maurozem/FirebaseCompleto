@@ -19,4 +19,5 @@
     <string name="senha_invalida">senha deve ter 6 (seis) caracteres</string>
     <string name="data_nascimento">data de nascimento</string>
     <string name="cpf">CPF</string>
+    <string name="erro">erro</string>
 </resources>

@@ -2,6 +2,7 @@ package ms.zem.firebasecompleto.cadastro
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_cadastro.*
 import kotlinx.android.synthetic.main.toolbar.toolbar
 import ms.zem.firebasecompleto.R
@@ -11,6 +12,9 @@ import ms.zem.firebasecompleto.implementations.TextWatcherData
 
 
 class CadastroActivity : AppCompatActivity() {
+
+    val firebaseAuth = FirebaseAuth.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastro)
