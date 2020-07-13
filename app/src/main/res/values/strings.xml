@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">FirebaseCompleto</string>
+    <string name="login">login</string>
+    <string name="cadastro">cadastro</string>
+    <string name="email">email</string>
+    <string name="senha">senha</string>
+    <string name="esqueci_minha_senha">Esqueci minha senha</string>
+    <string name="email_incorreto">Email incorreto</string>
+    <string name="senha_incorreta">Senha incorreta</string>
+    <string name="nome">nome</string>
+    <string name="celular">celular (com ddd)</string>
+    <string name="cadastrar">cadastrar</string>
+    <string name="idade">idade</string>
+    <string name="masculino">masculino</string>
+    <string name="feminino">feminino</string>
+    <string name="aceito_receber_notificacoes">aceito receber notificações</string>
+    <string name="sexo">sexo:</string>
+    <string name="nome_invalido">nome inválido</string>
+    <string name="senha_invalida">senha deve ter 6 (seis) caracteres</string>
+    <string name="data_nascimento">data de nascimento</string>
+    <string name="cpf">CPF</string>
+</resources>

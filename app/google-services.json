@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "238008421177",
+    "firebase_url": "https://pessoal-estudo.firebaseio.com",
+    "project_id": "pessoal-estudo",
+    "storage_bucket": "pessoal-estudo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:238008421177:android:a812ed7815b496403176e8",
+        "android_client_info": {
+          "package_name": "ms.zem.firebasecompleto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "238008421177-p5f5nsj7san1udvrg3hv8npmncemknq9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ms.zem.firebasecompleto",
+            "certificate_hash": "065afa4cfed579eadb2d38f9b248d3a28d3833b6"
+          }
+        },
+        {
+          "client_id": "238008421177-pfq3m4onf3uaf6t87adr4sr1bi0p2te4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcq1dO17QInN7_Njv36pH12wcODHGWslY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "238008421177-pfq3m4onf3uaf6t87adr4sr1bi0p2te4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
