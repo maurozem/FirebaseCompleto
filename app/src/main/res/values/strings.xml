@@ -20,4 +20,10 @@
     <string name="data_nascimento">data de nascimento</string>
     <string name="cpf">CPF</string>
     <string name="erro">erro</string>
+    <string name="logoff">logoff</string>
+    <string name="confirma_logoff">confirma logoff?</string>
+    <string name="cancelar">cancelar</string>
+    <string name="sim">sim</string>
+    <string name="cadastro_efetuado">cadastro efetuado</string>
+    <string name="email_senha_verificados">email/senha verificados</string>
 </resources>

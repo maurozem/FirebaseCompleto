@@ -3,6 +3,8 @@ package ms.zem.firebasecompleto.login
 import android.os.Bundle
 import com.blankj.utilcode.util.NetworkUtils
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.iedtEmail
+import kotlinx.android.synthetic.main.activity_login.iedtSenha
 import kotlinx.android.synthetic.main.toolbar.toolbar
 import ms.zem.firebasecompleto.BaseActivity
 import ms.zem.firebasecompleto.R
@@ -36,13 +38,13 @@ class LoginActivity : BaseActivity() {
 
     private fun verificarPermissao() {
         flipper.displayedChild = 0
-        firebaseAuth.signInWithEmailAndPassword(
+        auth.signInWithEmailAndPassword(
             iedtEmail.text.toString(),
             iedtSenha.text.toString()
         ).addOnCompleteListener { task ->
             flipper.displayedChild = 1
             if (task.isSuccessful) {
-                mensagem(this, "email/senha verificados")
+                snack(flipper, getString(R.string.email_senha_verificados))
             } else {
                 mensagem(this, "email/senha inválido(s)")
             }

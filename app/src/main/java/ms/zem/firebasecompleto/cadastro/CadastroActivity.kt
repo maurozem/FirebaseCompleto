@@ -2,18 +2,19 @@ package ms.zem.firebasecompleto.cadastro
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.blankj.utilcode.util.RegexUtils
+import com.blankj.utilcode.util.Utils
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_cadastro.*
 import kotlinx.android.synthetic.main.toolbar.toolbar
+import ms.zem.firebasecompleto.BaseActivity
 import ms.zem.firebasecompleto.R
 import ms.zem.firebasecompleto.implementations.TextWatcherCPF
 import ms.zem.firebasecompleto.implementations.TextWatcherCelular
 import ms.zem.firebasecompleto.implementations.TextWatcherData
 
 
-class CadastroActivity : AppCompatActivity() {
-
-    val firebaseAuth = FirebaseAuth.getInstance()
+class CadastroActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +34,6 @@ class CadastroActivity : AppCompatActivity() {
         iedtCPF.addTextChangedListener(TextWatcherCPF())
     }
 
-
-
     private fun testarSenha(): Boolean {
         if (iedtSenha.text?.length!! < 6) {
             tilSenha.requestFocus()
@@ -49,7 +48,13 @@ class CadastroActivity : AppCompatActivity() {
     private fun setBotaoCadastrar() {
         btnCadastrar.setOnClickListener {
             if (testarSenha() && testarEmail() && testarNome()) {
-                // a
+                auth.
+                createUserWithEmailAndPassword(iedtEmail.text.toString(), iedtSenha.text.toString()).
+                addOnCompleteListener {task ->
+                    if (task.isSuccessful){
+                        snack(llCadastro, getString(R.string.cadastro_efetuado))
+                    }
+                }
             }
         }
     }
@@ -67,8 +72,7 @@ class CadastroActivity : AppCompatActivity() {
 
     private fun testarEmail(): Boolean {
         if (iedtEmail.text?.length!! < 5 ||
-            iedtEmail.text?.split("@")!!.size != 2 ||
-            iedtEmail.text?.split("@", ".")!!.size < 3
+            (!RegexUtils.isEmail(iedtEmail.text))
         ) {
             tilEmail.requestFocus()
             tilEmail.error = getString(R.string.email_incorreto)
