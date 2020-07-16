@@ -8,6 +8,7 @@
         <item name="background">@color/background</item>
         <item name="android:textAppearance">@style/textStyle</item>
         <item name="android:buttonStyle">@style/btnStyle</item>
+        <item name="android:colorControlNormal">@color/primary_light</item>
     </style>
 
     <style name="btnStyle">

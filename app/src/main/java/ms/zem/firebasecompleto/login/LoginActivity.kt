@@ -2,12 +2,14 @@ package ms.zem.firebasecompleto.login
 
 import android.os.Bundle
 import com.blankj.utilcode.util.NetworkUtils
+import kotlinx.android.synthetic.main.activity_cadastro.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.iedtEmail
 import kotlinx.android.synthetic.main.activity_login.iedtSenha
 import kotlinx.android.synthetic.main.toolbar.toolbar
 import ms.zem.firebasecompleto.BaseActivity
 import ms.zem.firebasecompleto.R
+import ms.zem.firebasecompleto.extensions.trataErroFirebase
 
 class LoginActivity : BaseActivity() {
 
@@ -17,6 +19,9 @@ class LoginActivity : BaseActivity() {
 
         toolbar.title = getString(R.string.login)
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         flipper.displayedChild = 1
 
         btnLogin.setOnClickListener {
@@ -46,7 +51,13 @@ class LoginActivity : BaseActivity() {
             if (task.isSuccessful) {
                 snack(flipper, getString(R.string.email_senha_verificados))
             } else {
-                mensagem(this, "email/senha inválido(s)")
+                task.exception?.message?.let { msg ->
+                    snack(
+                        flipper,
+                        msg.trataErroFirebase()
+                    )
+                }
+
             }
 
         }

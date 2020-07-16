@@ -14,9 +14,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnLogin.enableDisable(user == null)
-        btnCadastro.enableDisable(user == null)
-        btnLogoff.enableDisable(user != null)
+        verificarUsuarioLogadoDeslogado()
 
         btnLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
@@ -26,9 +24,22 @@ class MainActivity : BaseActivity() {
         }
         btnLogoff.setOnClickListener {
             showDialog(this, R.string.confirma_logoff) {
-                mensagem(this, "testando 1 2 3")
+                auth.signOut()
+                mensagem(this, getString(R.string.usuario_desconectado))
+                verificarUsuarioLogadoDeslogado()
+                recreate()
             }
         }
+    }
 
+    override fun onRestart() {
+        super.onRestart()
+        recreate()
+    }
+
+    private fun verificarUsuarioLogadoDeslogado() {
+        btnLogin.enableDisable(user == null)
+        btnCadastro.enableDisable(user == null)
+        btnLogoff.enableDisable(user != null)
     }
 }

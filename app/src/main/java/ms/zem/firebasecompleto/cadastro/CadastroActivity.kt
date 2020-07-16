@@ -2,6 +2,7 @@ package ms.zem.firebasecompleto.cadastro
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.blankj.utilcode.util.Utils
 import com.google.firebase.auth.FirebaseAuth
@@ -9,10 +10,12 @@ import kotlinx.android.synthetic.main.activity_cadastro.*
 import kotlinx.android.synthetic.main.toolbar.toolbar
 import ms.zem.firebasecompleto.BaseActivity
 import ms.zem.firebasecompleto.R
+import ms.zem.firebasecompleto.extensions.dataValida
+import ms.zem.firebasecompleto.extensions.senhaValida
+import ms.zem.firebasecompleto.extensions.trataErroFirebase
 import ms.zem.firebasecompleto.implementations.TextWatcherCPF
 import ms.zem.firebasecompleto.implementations.TextWatcherCelular
 import ms.zem.firebasecompleto.implementations.TextWatcherData
-
 
 class CadastroActivity : BaseActivity() {
 
@@ -35,7 +38,7 @@ class CadastroActivity : BaseActivity() {
     }
 
     private fun testarSenha(): Boolean {
-        if (iedtSenha.text?.length!! < 6) {
+        if (iedtSenha.senhaValida()) {
             tilSenha.requestFocus()
             tilSenha.error = getString(R.string.senha_invalida)
             tilSenha.isErrorEnabled = true
@@ -47,16 +50,40 @@ class CadastroActivity : BaseActivity() {
 
     private fun setBotaoCadastrar() {
         btnCadastrar.setOnClickListener {
-            if (testarSenha() && testarEmail() && testarNome()) {
-                auth.
-                createUserWithEmailAndPassword(iedtEmail.text.toString(), iedtSenha.text.toString()).
-                addOnCompleteListener {task ->
-                    if (task.isSuccessful){
+            if (NetworkUtils.isConnected()) {
+//            if (testarDataNasc() && testarSenha() && testarEmail() && testarNome()) {
+                auth.createUserWithEmailAndPassword(
+                    iedtEmail.text.toString(),
+                    iedtSenha.text.toString()
+                ).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
                         snack(llCadastro, getString(R.string.cadastro_efetuado))
+                    } else {
+                        task.exception?.message?.let { msg ->
+                            snack(
+                                llCadastro,
+                                msg.trataErroFirebase()
+                            )
+                        }
+
                     }
                 }
+//            }
+            } else {
+                snack(llCadastro, getString(R.string.sem_conexao_com_internet))
             }
         }
+    }
+
+    private fun testarDataNasc(): Boolean {
+        if(!iedtDataNascimento.dataValida()){
+            tilDataNascimento.requestFocus()
+            tilDataNascimento.error = getString(R.string.data_invalida)
+            tilDataNascimento.isErrorEnabled = true
+        } else {
+            tilDataNascimento.isErrorEnabled = false
+        }
+        return !tilDataNascimento.isErrorEnabled
     }
 
     private fun testarNome(): Boolean {

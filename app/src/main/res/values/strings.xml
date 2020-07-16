@@ -26,4 +26,7 @@
     <string name="sim">sim</string>
     <string name="cadastro_efetuado">cadastro efetuado</string>
     <string name="email_senha_verificados">email/senha verificados</string>
+    <string name="data_invalida">data inválida</string>
+    <string name="sem_conexao_com_internet">sem conexão com a internet</string>
+    <string name="usuario_desconectado">usuário desconectado</string>
 </resources>
