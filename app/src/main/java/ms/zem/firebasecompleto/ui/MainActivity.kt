@@ -1,13 +1,13 @@
-package ms.zem.firebasecompleto.login
+package ms.zem.firebasecompleto.ui
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AlertDialog
 import kotlinx.android.synthetic.main.activity_main.*
-import ms.zem.firebasecompleto.BaseActivity
 import ms.zem.firebasecompleto.R
-import ms.zem.firebasecompleto.cadastro.CadastroActivity
+import ms.zem.firebasecompleto.ui.cadastro.CadastroActivity
 import ms.zem.firebasecompleto.extensions.enableDisable
+import ms.zem.firebasecompleto.ui.login.LoginActivity
+import ms.zem.firebasecompleto.utils.AlertDialogUtil
 
 class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,12 +23,16 @@ class MainActivity : BaseActivity() {
             startActivity(Intent(this, CadastroActivity::class.java))
         }
         btnLogoff.setOnClickListener {
-            showDialog(this, R.string.confirma_logoff) {
-                auth.signOut()
-                mensagem(this, getString(R.string.usuario_desconectado))
-                verificarUsuarioLogadoDeslogado()
-                recreate()
-            }
+            AlertDialogUtil
+                .init(this)
+                .confirmar(getString(R.string.confirma_logoff), {
+                    auth.signOut()
+                    verificarUsuarioLogadoDeslogado()
+                    recreate()
+                    AlertDialogUtil
+                        .init(this)
+                        .sucesso(getString(R.string.usuario_desconectado))
+                })
         }
     }
 

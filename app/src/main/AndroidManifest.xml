@@ -12,13 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".cadastro.CadastroActivity"
-            android:parentActivityName=".login.MainActivity"/>
-        <activity android:name=".login.LoginActivity"
-            android:parentActivityName=".login.MainActivity"
+        <activity android:name="ms.zem.firebasecompleto.ui.cadastro.CadastroActivity"
+            android:parentActivityName="ms.zem.firebasecompleto.ui.MainActivity"/>
+        <activity android:name="ms.zem.firebasecompleto.ui.login.LoginActivity"
+            android:parentActivityName="ms.zem.firebasecompleto.ui.MainActivity"
             />
-        <activity android:name=".login.MainActivity" />
-        <activity android:name=".SplashActivity">
+        <activity android:name="ms.zem.firebasecompleto.ui.MainActivity" />
+        <activity android:name=".ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -29,4 +29,10 @@
     <string name="data_invalida">data inválida</string>
     <string name="sem_conexao_com_internet">sem conexão com a internet</string>
     <string name="usuario_desconectado">usuário desconectado</string>
+    <string name="nao">não</string>
+    <string name="atencao">atenção</string>
+    <string name="ok">ok</string>
+    <string name="confirmacao">confirmação</string>
+    <string name="sucesso">sucesso</string>
+    <string name="aviso">aviso</string>
 </resources>

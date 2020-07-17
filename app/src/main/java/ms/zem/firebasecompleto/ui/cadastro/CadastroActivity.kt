@@ -1,14 +1,11 @@
-package ms.zem.firebasecompleto.cadastro
+package ms.zem.firebasecompleto.ui.cadastro
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.RegexUtils
-import com.blankj.utilcode.util.Utils
-import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_cadastro.*
 import kotlinx.android.synthetic.main.toolbar.toolbar
-import ms.zem.firebasecompleto.BaseActivity
+import ms.zem.firebasecompleto.ui.BaseActivity
 import ms.zem.firebasecompleto.R
 import ms.zem.firebasecompleto.extensions.dataValida
 import ms.zem.firebasecompleto.extensions.senhaValida
@@ -16,6 +13,7 @@ import ms.zem.firebasecompleto.extensions.trataErroFirebase
 import ms.zem.firebasecompleto.implementations.TextWatcherCPF
 import ms.zem.firebasecompleto.implementations.TextWatcherCelular
 import ms.zem.firebasecompleto.implementations.TextWatcherData
+import ms.zem.firebasecompleto.utils.AlertDialogUtil
 
 class CadastroActivity : BaseActivity() {
 
@@ -57,20 +55,24 @@ class CadastroActivity : BaseActivity() {
                     iedtSenha.text.toString()
                 ).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        snack(llCadastro, getString(R.string.cadastro_efetuado))
+                        AlertDialogUtil
+                            .init(this)
+                            .sucesso(getString(R.string.cadastro_efetuado)){
+                                finish()
+                            }
                     } else {
                         task.exception?.message?.let { msg ->
-                            snack(
-                                llCadastro,
-                                msg.trataErroFirebase()
-                            )
+                            AlertDialogUtil
+                                .init(this)
+                                .erro(msg.trataErroFirebase())
                         }
-
                     }
                 }
 //            }
             } else {
-                snack(llCadastro, getString(R.string.sem_conexao_com_internet))
+                AlertDialogUtil
+                    .init(this)
+                    .erro(getString(R.string.sem_conexao_com_internet))
             }
         }
     }

@@ -1,9 +1,9 @@
-package ms.zem.firebasecompleto
+package ms.zem.firebasecompleto.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ms.zem.firebasecompleto.login.MainActivity
+import ms.zem.firebasecompleto.R
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
