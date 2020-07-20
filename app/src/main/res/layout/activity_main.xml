@@ -19,6 +19,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btnAnonimo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@id/btnGoogle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/login_anonimo"
+        style="@style/btnStyle"
+        />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/btnGoogle"
         android:layout_width="match_parent"
@@ -55,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="@string/google"
+                android:text="@string/login_com_google"
                 android:textColor="@color/branco"
                 android:textStyle="bold"
                 />
@@ -100,7 +112,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="@string/facebook"
+                android:text="@string/login_com_facebook"
                 android:textColor="@color/branco"
                 android:textStyle="bold"
                 />
@@ -145,7 +157,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="@string/email"
+                android:text="@string/login_com_email"
                 android:textColor="@color/branco"
                 android:textStyle="bold"
                 />
