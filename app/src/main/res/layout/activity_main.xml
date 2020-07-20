@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
@@ -18,41 +19,229 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.facebook.login.widget.LoginButton
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnGoogle"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginBottom="32dp"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        app:layout_constraintBottom_toTopOf="@id/btnFace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/primary_dark"
+        app:cardCornerRadius="1dp"
+        app:cardElevation="1dp"
+        app:cardUseCompatPadding="true"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="40dp"
+            android:layout_gravity="center_vertical" >
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/login_google" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/google"
+                android:textColor="@color/branco"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/btnFace"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginStart="64dp"
         android:layout_marginEnd="64dp"
         app:layout_constraintBottom_toTopOf="@id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/primary_dark"
+        app:cardCornerRadius="1dp"
+        app:cardElevation="1dp"
+        app:cardUseCompatPadding="true"
+        android:clickable="true"
+        android:focusable="true">
 
-    <Button
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="40dp"
+            android:layout_gravity="center_vertical" >
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/login_facebook" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/facebook"
+                android:textColor="@color/branco"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/btnLogin"
-        style="@style/btnStyle"
-        android:layout_marginBottom="32dp"
-        android:text="@string/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
         app:layout_constraintBottom_toTopOf="@id/btnCadastro"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/primary_dark"
+        app:cardCornerRadius="1dp"
+        app:cardElevation="1dp"
+        app:cardUseCompatPadding="true"
+        android:clickable="true"
+        android:focusable="true">
 
-    <Button
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="40dp"
+            android:layout_gravity="center_vertical" >
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/login_email" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/email"
+                android:textColor="@color/branco"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/btnCadastro"
-        style="@style/btnStyle"
-        android:layout_marginBottom="32dp"
-        android:text="@string/cadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
         app:layout_constraintBottom_toTopOf="@id/btnLogoff"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/primary_dark"
+        app:cardCornerRadius="1dp"
+        app:cardElevation="1dp"
+        app:cardUseCompatPadding="true"
+        android:clickable="true"
+        android:focusable="true">
 
-    <Button
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="40dp"
+            android:layout_gravity="center_vertical" >
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_cadastro" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/cadastro"
+                android:textColor="@color/branco"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/btnLogoff"
-        style="@style/btnStyle"
-        android:layout_marginBottom="32dp"
-        android:text="@string/logoff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="40dp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:backgroundTint="@color/primary_dark"
+        app:cardCornerRadius="1dp"
+        app:cardElevation="1dp"
+        app:cardUseCompatPadding="true"
+        android:clickable="true"
+        android:focusable="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="40dp"
+            android:layout_gravity="center_vertical" >
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_logoff" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/logoff"
+                android:textColor="@color/branco"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

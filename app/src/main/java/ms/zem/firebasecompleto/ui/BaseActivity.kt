@@ -9,8 +9,8 @@ import com.google.firebase.auth.FirebaseAuth
 
 open class BaseActivity : AppCompatActivity() {
 
-    val auth = FirebaseAuth.getInstance()
-    val user = auth.currentUser
+    protected val auth = FirebaseAuth.getInstance()
+    protected val user = auth.currentUser
 
     protected fun mensagem(context: Context, msg: Int) {
         mensagem(context, getString(msg))

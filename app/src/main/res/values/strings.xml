@@ -35,4 +35,9 @@
     <string name="confirmacao">confirmação</string>
     <string name="sucesso">sucesso</string>
     <string name="aviso">aviso</string>
+    <string name="google">google</string>
+    <string name="facebook">facebook</string>
+    <string name="facebook_app_id">223473012043138</string>
+    <string name="fb_login_protocol_scheme">fb223473012043138</string>
+
 </resources>

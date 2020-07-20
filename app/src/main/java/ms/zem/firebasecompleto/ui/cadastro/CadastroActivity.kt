@@ -5,7 +5,6 @@ import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.RegexUtils
 import kotlinx.android.synthetic.main.activity_cadastro.*
 import kotlinx.android.synthetic.main.toolbar.toolbar
-import ms.zem.firebasecompleto.ui.BaseActivity
 import ms.zem.firebasecompleto.R
 import ms.zem.firebasecompleto.extensions.dataValida
 import ms.zem.firebasecompleto.extensions.senhaValida
@@ -13,6 +12,7 @@ import ms.zem.firebasecompleto.extensions.trataErroFirebase
 import ms.zem.firebasecompleto.implementations.TextWatcherCPF
 import ms.zem.firebasecompleto.implementations.TextWatcherCelular
 import ms.zem.firebasecompleto.implementations.TextWatcherData
+import ms.zem.firebasecompleto.ui.BaseActivity
 import ms.zem.firebasecompleto.utils.AlertDialogUtil
 
 class CadastroActivity : BaseActivity() {
@@ -36,7 +36,7 @@ class CadastroActivity : BaseActivity() {
     }
 
     private fun testarSenha(): Boolean {
-        if (iedtSenha.senhaValida()) {
+        if (!iedtSenha.senhaValida()) {
             tilSenha.requestFocus()
             tilSenha.error = getString(R.string.senha_invalida)
             tilSenha.isErrorEnabled = true
@@ -50,25 +50,26 @@ class CadastroActivity : BaseActivity() {
         btnCadastrar.setOnClickListener {
             if (NetworkUtils.isConnected()) {
 //            if (testarDataNasc() && testarSenha() && testarEmail() && testarNome()) {
-                auth.createUserWithEmailAndPassword(
-                    iedtEmail.text.toString(),
-                    iedtSenha.text.toString()
-                ).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        AlertDialogUtil
-                            .init(this)
-                            .sucesso(getString(R.string.cadastro_efetuado)){
-                                finish()
-                            }
-                    } else {
-                        task.exception?.message?.let { msg ->
+                if (testarSenha() && testarEmail()) {
+                    auth.createUserWithEmailAndPassword(
+                        iedtEmail.text.toString(),
+                        iedtSenha.text.toString()
+                    ).addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
                             AlertDialogUtil
                                 .init(this)
-                                .erro(msg.trataErroFirebase())
+                                .sucesso(getString(R.string.cadastro_efetuado)) {
+                                    finish()
+                                }
+                        } else {
+                            task.exception?.message?.let { msg ->
+                                AlertDialogUtil
+                                    .init(this)
+                                    .erro(msg.trataErroFirebase())
+                            }
                         }
                     }
                 }
-//            }
             } else {
                 AlertDialogUtil
                     .init(this)
@@ -78,7 +79,7 @@ class CadastroActivity : BaseActivity() {
     }
 
     private fun testarDataNasc(): Boolean {
-        if(!iedtDataNascimento.dataValida()){
+        if (!iedtDataNascimento.dataValida()) {
             tilDataNascimento.requestFocus()
             tilDataNascimento.error = getString(R.string.data_invalida)
             tilDataNascimento.isErrorEnabled = true
