@@ -9,6 +9,7 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.firebase.ui.auth.AuthUI
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -57,6 +58,23 @@ class MainActivity : BaseActivity() {
         servicosGoogle()
         servicosFacebook()
         verificarUsuarioLogadoDeslogado()
+        verificaEmail()
+    }
+
+    private fun verificaEmail() {
+        if (user != null &&
+            !user.isAnonymous &&
+            !user.email.isNullOrEmpty() &&
+            !user.isEmailVerified){
+                AlertDialogUtil.init(this)
+                    .confirmar("Enviar validação de email?", {
+                        user.sendEmailVerification().addOnCompleteListener { task ->
+                            if (task.isSuccessful){
+                                mensagem(this, "Email enviado.")
+                            }
+                        }
+                    })
+        }
     }
 
     private fun logonAnonimo() {
@@ -131,6 +149,12 @@ class MainActivity : BaseActivity() {
                 AccessToken.getCurrentAccessToken()?.let {
                     LoginManager.getInstance().logOut()
                 }
+                AuthUI.getInstance()
+                    .signOut(this)
+                    .addOnCompleteListener {
+                        // ...
+                    }
+
                 AlertDialogUtil
                     .init(this)
                     .sucesso(getString(R.string.usuario_desconectado)){

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -9,6 +9,13 @@
         <item name="android:textAppearance">@style/textStyle</item>
         <item name="android:buttonStyle">@style/btnStyle</item>
         <item name="android:colorControlNormal">@color/primary_light</item>
+        <item name="cardViewStyle">@style/cardViewStyle</item>
+    </style>
+
+    <style name="cardViewStyle" parent="@style/CardView" tools:ignore="PrivateResource">
+        <item name="cardCornerRadius">3dp</item>
+        <item name="cardElevation">3dp</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
     </style>
 
     <style name="btnStyle">
@@ -30,5 +37,5 @@
         <item name="android:textColor">@color/primary_text</item>
         <item name="android:textSize">14sp</item>
     </style>
-
+    
 </resources>

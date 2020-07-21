@@ -45,5 +45,10 @@
     <string name="login_com_facebook">login c/ facebook</string>
     <string name="login_com_google">login c/ google</string>
     <string name="login_anonimo">login anônimo</string>
+    <string name="database_gravar_alterar_excluir">Database - gravar/alterar/excluir</string>
+    <string name="empresas">Empresas</string>
+    <string name="database_ler_dados">Database - Ler dados</string>
+    <string name="storage_upload">Storage Upload</string>
+    <string name="storage_download">Storage Download</string>
 
 </resources>
