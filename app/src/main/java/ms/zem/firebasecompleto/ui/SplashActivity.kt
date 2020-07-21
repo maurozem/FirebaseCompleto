@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ms.zem.firebasecompleto.R
+import ms.zem.firebasecompleto.ui.login.LoginFirebaseActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,7 +13,7 @@ class SplashActivity : AppCompatActivity() {
 
         Thread(Runnable {
             Thread.sleep(1000)
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, LoginFirebaseActivity::class.java))
             finish()
         }).start()
     }

@@ -18,6 +18,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_main.*
 import ms.zem.firebasecompleto.R
 import ms.zem.firebasecompleto.extensions.enableDisable
+import ms.zem.firebasecompleto.extensions.trataErroFirebase
 import ms.zem.firebasecompleto.ui.cadastro.CadastroActivity
 import ms.zem.firebasecompleto.ui.login.LoginActivity
 import ms.zem.firebasecompleto.utils.AlertDialogUtil
@@ -59,7 +60,21 @@ class MainActivity : BaseActivity() {
     }
 
     private fun logonAnonimo() {
-
+        auth.signInAnonymously()
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Log.i(TAG, "signInAnonymously:success")
+                    AlertDialogUtil
+                        .init(this)
+                        .sucesso("Usuário anônimo conectado"){
+                            verificarUsuarioLogadoDeslogado()
+                            recreate()
+                        }
+                } else {
+                    snack(constraintMain, "Erro ao tentar logar anonimamente")
+                    Log.w(TAG, "signInAnonymously:failure", task.exception)
+                }
+            }
     }
 
     private fun logonGoogle() {
@@ -91,7 +106,8 @@ class MainActivity : BaseActivity() {
                 }
                 override fun onError(error: FacebookException?) {
                     mensagem(this@MainActivity,"Erro ao tentar autenticar.\n" +
-                            "${error?.message}")
+                            (error?.message?.trataErroFirebase() ?: "")
+                    )
                     Log.e(TAG, error?.stackTrace.toString())
                 }
             })
@@ -115,9 +131,12 @@ class MainActivity : BaseActivity() {
                 AccessToken.getCurrentAccessToken()?.let {
                     LoginManager.getInstance().logOut()
                 }
-                verificarUsuarioLogadoDeslogado()
-                recreate()
-                mensagem(this, R.string.usuario_desconectado)
+                AlertDialogUtil
+                    .init(this)
+                    .sucesso(getString(R.string.usuario_desconectado)){
+                        verificarUsuarioLogadoDeslogado()
+                        recreate()
+                    }
             })
     }
 
@@ -131,7 +150,7 @@ class MainActivity : BaseActivity() {
                 userGoogle.idToken?.let { firebaseAuthWithGoogle(it) }
             } catch (e: Exception){
                 Log.e(TAG, "GOOGLE_SIGN_IN: ${e.stackTrace}", e)
-                snack(constraintMain, e.message.toString())
+                e.message?.trataErroFirebase()?.let { snack(constraintMain, it) }
             }
         } else {
             verificarUsuarioLogadoDeslogado()
@@ -179,6 +198,7 @@ class MainActivity : BaseActivity() {
         btnCadastro.enableDisable(!logado())
         btnGoogle.enableDisable(!logado())
         btnFace.enableDisable(!logado())
+        btnAnonimo.enableDisable(!logado())
         btnLogoff.enableDisable(logado())
     }
 
