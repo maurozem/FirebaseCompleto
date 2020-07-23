@@ -35,7 +35,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/nome"
-                    android:inputType="textPersonName|textAutoCorrect" />
+                    android:inputType="textPersonName|textAutoCorrect|textCapWords" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,10 +108,10 @@
                     android:id="@+id/iedtCelular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:digits="1234567890() -"
+                    android:digits="1234567890() -+"
                     android:hint="@string/celular"
                     android:inputType="phone"
-                    android:maxLength="15" />
+                    android:maxLength="19" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -151,25 +151,6 @@
                     android:contentDescription="@string/data_nascimento" />
 
             </LinearLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilIdade"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp" >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/iedtIdade"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/idade"
-                    android:inputType="number"
-                    android:maxLength="3" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <RadioGroup
                 android:id="@+id/rgSexo"
@@ -227,6 +208,15 @@
                 android:background="@color/primary_light"
                 android:enabled="false"
                 android:text="@string/cadastrar"  />
+
+            <Button
+                android:id="@+id/btnAtualizar"
+                style="@style/btnStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:text="@string/atualizar"  />
 
         </LinearLayout>
 

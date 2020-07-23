@@ -1,19 +1,22 @@
 package ms.zem.firebasecompleto.ui.cadastro
 
 import android.os.Bundle
+import android.view.View
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.RegexUtils
+import com.google.firebase.auth.PhoneAuthCredential
 import kotlinx.android.synthetic.main.activity_cadastro.*
 import kotlinx.android.synthetic.main.toolbar.toolbar
 import ms.zem.firebasecompleto.R
 import ms.zem.firebasecompleto.extensions.dataValida
 import ms.zem.firebasecompleto.extensions.senhaValida
-import ms.zem.firebasecompleto.extensions.trataErroFirebase
-import ms.zem.firebasecompleto.implementations.TextWatcherCPF
-import ms.zem.firebasecompleto.implementations.TextWatcherCelular
-import ms.zem.firebasecompleto.implementations.TextWatcherData
+import ms.zem.firebasecompleto.extensions.traduzErroFirebase
+import ms.zem.firebasecompleto.utils.TextWatcherCPF
+import ms.zem.firebasecompleto.utils.TextWatcherCelular
+import ms.zem.firebasecompleto.utils.TextWatcherData
 import ms.zem.firebasecompleto.ui.BaseActivity
 import ms.zem.firebasecompleto.utils.AlertDialogUtil
+import ms.zem.firebasecompleto.utils.DatePickerUtil
 
 class CadastroActivity : BaseActivity() {
 
@@ -24,9 +27,40 @@ class CadastroActivity : BaseActivity() {
         toolbar.title = getString(R.string.cadastro)
         setSupportActionBar(toolbar)
 
+        atualizacao()
         setCheckBoxAceite()
         setMask()
         setBotaoCadastrar()
+        setBotaoAtualizar()
+        btnCalendario.setOnClickListener {
+            DatePickerUtil.setData(iedtDataNascimento)
+        }
+    }
+
+    private fun atualizacao(){
+        if (user != null){
+            btnCadastrar.visibility = View.GONE
+            tilEmail.visibility = View.GONE
+            tilSenha.visibility = View.GONE
+            cbxNoticacoes.visibility = View.GONE
+            tilSenha.visibility = View.GONE
+
+            iedtNome.setText(user.displayName)
+            iedtCelular.setText(user.phoneNumber)
+        } else {
+            btnAtualizar.visibility = View.GONE
+            tilNome.visibility = View.GONE
+            tilCPF.visibility = View.GONE
+            tilDataNascimento.visibility = View.GONE
+            tilCelular.visibility = View.GONE
+            rgSexo.visibility = View.GONE
+        }
+    }
+
+    private fun setBotaoAtualizar(){
+        btnAtualizar.setOnClickListener {
+
+        }
     }
 
     private fun setMask() {
@@ -65,7 +99,7 @@ class CadastroActivity : BaseActivity() {
                             task.exception?.message?.let { msg ->
                                 AlertDialogUtil
                                     .init(this)
-                                    .erro(msg.trataErroFirebase())
+                                    .erro(msg.traduzErroFirebase())
                             }
                         }
                     }

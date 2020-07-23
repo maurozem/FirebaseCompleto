@@ -1,6 +1,6 @@
 package ms.zem.firebasecompleto.extensions
 
-fun String.trataErroFirebase(): String{
+fun String.traduzErroFirebase(): String{
     return when {
         this.contains("least 6 characters") -> {
             "senha deve conter 6 caracteres"

@@ -8,7 +8,7 @@ import kotlinx.android.synthetic.main.activity_login.iedtSenha
 import kotlinx.android.synthetic.main.toolbar.toolbar
 import ms.zem.firebasecompleto.ui.BaseActivity
 import ms.zem.firebasecompleto.R
-import ms.zem.firebasecompleto.extensions.trataErroFirebase
+import ms.zem.firebasecompleto.extensions.traduzErroFirebase
 import ms.zem.firebasecompleto.utils.AlertDialogUtil
 
 class LoginActivity : BaseActivity() {
@@ -43,7 +43,7 @@ class LoginActivity : BaseActivity() {
                                 .init(this)
                                 .sucesso("Email enviado")
                         } else {
-                            task.exception?.message?.trataErroFirebase()?.let {
+                            task.exception?.message?.traduzErroFirebase()?.let {
                                 AlertDialogUtil
                                     .init(this)
                                     .erro(it)
@@ -100,7 +100,7 @@ class LoginActivity : BaseActivity() {
                 task.exception?.message?.let { msg ->
                     AlertDialogUtil
                         .init(this)
-                        .erro(msg.trataErroFirebase())
+                        .erro(msg.traduzErroFirebase())
                 }
             }
         }

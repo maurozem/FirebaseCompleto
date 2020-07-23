@@ -1,7 +1,7 @@
 package ms.zem.firebasecompleto.utils
 
+import android.app.AlertDialog
 import android.content.Context
-import androidx.appcompat.app.AlertDialog
 import ms.zem.firebasecompleto.R
 
 object AlertDialogUtil{

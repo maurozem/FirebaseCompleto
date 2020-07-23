@@ -1,4 +1,4 @@
-package ms.zem.firebasecompleto.implementations
+package ms.zem.firebasecompleto.utils
 
 import android.text.Editable
 import android.text.TextWatcher
@@ -13,14 +13,19 @@ class TextWatcherCelular : TextWatcher {
             formatando = true
             val ss = StringBuffer()
             ss.append(numero)
-            if (tamanho > 2) {
-                ss.insert(0, "(")
-                ss.insert(3, ") ")
+            if (tamanho > 0) {
+                ss.insert(0, "+")
             }
-            if (tamanho in 8..10) {
-                ss.insert(9, "-")
-            } else if (tamanho >= 11) {
-                ss.insert(10, "-")
+            if (tamanho > 2) {
+                ss.insert(3, " (")
+            }
+            if (tamanho > 4) {
+                ss.insert(7, ") ")
+            }
+            if (tamanho in 9..12) {
+                ss.insert(13, "-")
+            } else if (tamanho >= 13) {
+                ss.insert(14, "-")
             }
             s?.clear()
             s?.append(ss)

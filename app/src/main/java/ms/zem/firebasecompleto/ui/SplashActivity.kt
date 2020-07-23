@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ms.zem.firebasecompleto.R
+import ms.zem.firebasecompleto.ui.cadastro.CadastroActivity
 import ms.zem.firebasecompleto.ui.login.LoginFirebaseActivity
 
 class SplashActivity : AppCompatActivity() {
@@ -13,7 +14,7 @@ class SplashActivity : AppCompatActivity() {
 
         Thread(Runnable {
             Thread.sleep(1000)
-            startActivity(Intent(this, LoginFirebaseActivity::class.java))
+            startActivity(Intent(this, CadastroActivity::class.java))
             finish()
         }).start()
     }

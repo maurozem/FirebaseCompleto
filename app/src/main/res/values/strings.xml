@@ -50,5 +50,6 @@
     <string name="database_ler_dados">Database - Ler dados</string>
     <string name="storage_upload">Storage Upload</string>
     <string name="storage_download">Storage Download</string>
+    <string name="atualizar">atualizar</string>
 
 </resources>
