@@ -6,8 +6,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
 
 open class BaseActivity : AppCompatActivity() {
+
 
     protected val auth = FirebaseAuth.getInstance()
     protected val user = auth.currentUser

@@ -4,19 +4,14 @@ import android.os.Bundle
 import android.view.View
 import com.blankj.utilcode.util.NetworkUtils
 import com.blankj.utilcode.util.RegexUtils
-import com.google.firebase.auth.PhoneAuthCredential
 import kotlinx.android.synthetic.main.activity_cadastro.*
 import kotlinx.android.synthetic.main.toolbar.toolbar
 import ms.zem.firebasecompleto.R
 import ms.zem.firebasecompleto.extensions.dataValida
 import ms.zem.firebasecompleto.extensions.senhaValida
 import ms.zem.firebasecompleto.extensions.traduzErroFirebase
-import ms.zem.firebasecompleto.utils.TextWatcherCPF
-import ms.zem.firebasecompleto.utils.TextWatcherCelular
-import ms.zem.firebasecompleto.utils.TextWatcherData
 import ms.zem.firebasecompleto.ui.BaseActivity
-import ms.zem.firebasecompleto.utils.AlertDialogUtil
-import ms.zem.firebasecompleto.utils.DatePickerUtil
+import ms.zem.firebasecompleto.utils.*
 
 class CadastroActivity : BaseActivity() {
 
@@ -37,8 +32,8 @@ class CadastroActivity : BaseActivity() {
         }
     }
 
-    private fun atualizacao(){
-        if (user != null){
+    private fun atualizacao() {
+        if (user != null) {
             btnCadastrar.visibility = View.GONE
             tilEmail.visibility = View.GONE
             tilSenha.visibility = View.GONE
@@ -57,7 +52,7 @@ class CadastroActivity : BaseActivity() {
         }
     }
 
-    private fun setBotaoAtualizar(){
+    private fun setBotaoAtualizar() {
         btnAtualizar.setOnClickListener {
 
         }

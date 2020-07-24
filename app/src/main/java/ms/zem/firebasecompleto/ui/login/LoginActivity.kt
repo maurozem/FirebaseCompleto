@@ -3,8 +3,6 @@ package ms.zem.firebasecompleto.ui.login
 import android.os.Bundle
 import com.blankj.utilcode.util.NetworkUtils
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.iedtEmail
-import kotlinx.android.synthetic.main.activity_login.iedtSenha
 import kotlinx.android.synthetic.main.toolbar.toolbar
 import ms.zem.firebasecompleto.ui.BaseActivity
 import ms.zem.firebasecompleto.R
@@ -19,7 +17,6 @@ class LoginActivity : BaseActivity() {
 
         toolbar.title = getString(R.string.login)
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         flipper.displayedChild = 1

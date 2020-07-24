@@ -6,6 +6,7 @@ import android.os.Bundle
 import ms.zem.firebasecompleto.R
 import ms.zem.firebasecompleto.ui.cadastro.CadastroActivity
 import ms.zem.firebasecompleto.ui.login.LoginFirebaseActivity
+import ms.zem.firebasecompleto.ui.menu.MenuActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,7 +15,7 @@ class SplashActivity : AppCompatActivity() {
 
         Thread(Runnable {
             Thread.sleep(1000)
-            startActivity(Intent(this, CadastroActivity::class.java))
+            startActivity(Intent(this, MenuActivity::class.java))
             finish()
         }).start()
     }

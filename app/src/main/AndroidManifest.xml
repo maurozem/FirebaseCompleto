@@ -15,7 +15,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.menu.MenuActivity" />
+        <activity android:name=".ui.storage.StorageDownloadActivity"
+            android:parentActivityName=".ui.menu.MenuActivity" />
+
+        <activity android:name=".ui.menu.MenuActivity"
+            android:parentActivityName=".ui.MainActivity" />
+
         <activity android:name=".ui.login.LoginFirebaseActivity" />
 
         <meta-data

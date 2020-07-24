@@ -51,5 +51,9 @@
     <string name="storage_upload">Storage Upload</string>
     <string name="storage_download">Storage Download</string>
     <string name="atualizar">atualizar</string>
+    <string name="download">download</string>
+    <string name="remover">remover</string>
+    <string name="gerar_pdf">Gerar PDF</string>
+    <string name="compartilhar">compartilhar</string>
 
 </resources>

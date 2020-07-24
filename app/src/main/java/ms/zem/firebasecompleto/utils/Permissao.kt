@@ -6,7 +6,7 @@ import java.util.*
 
 object Permissao {
 
-    fun permissao( activity: Activity, requestCode: Int, permissoes: Array<String>): Boolean {
+    fun permissao( activity: Activity, requestCode: Int, permissoes: List<String>): Boolean {
         val list = ArrayList<String>()
         for (permissao in permissoes) {
             if (activity.checkSelfPermission(permissao) != PackageManager.PERMISSION_GRANTED) {
