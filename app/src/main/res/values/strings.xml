@@ -55,5 +55,10 @@
     <string name="remover">remover</string>
     <string name="gerar_pdf">Gerar PDF</string>
     <string name="compartilhar">compartilhar</string>
+    <string name="upload">upload</string>
+    <string name="galeria">galeria</string>
+    <string name="tirar_foto">tirar foto</string>
+    <string name="camera">câmera</string>
+    <string name="obter_imagem">obter imagem</string>
 
 </resources>
