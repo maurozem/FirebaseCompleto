@@ -7,5 +7,5 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @SuppressLint("SimpleDateFormat")
-fun nomeDeArquivo() = SimpleDateFormat("_yyyyMMdd_HHmmss_").format(Date()) +
-            Random().ints(100, 999)
+fun nomeDeArquivo() = SimpleDateFormat("yyyyMMdd_HHmmss_").format(Date()) +
+        (Random().nextInt(899)+100)

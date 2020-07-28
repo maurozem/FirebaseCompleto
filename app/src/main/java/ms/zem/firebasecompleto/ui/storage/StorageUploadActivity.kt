@@ -1,10 +1,9 @@
 package ms.zem.firebasecompleto.ui.storage
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -18,13 +17,13 @@ import kotlinx.android.synthetic.main.activity_storage_upload.*
 import kotlinx.android.synthetic.main.toolbar.toolbar
 import ms.zem.firebasecompleto.R
 import ms.zem.firebasecompleto.ui.BaseActivity
+import ms.zem.firebasecompleto.utils.AlertDialogUtil
+import ms.zem.firebasecompleto.utils.DialogProgress
 import ms.zem.firebasecompleto.utils.ImageDownloadUtil
 import ms.zem.firebasecompleto.utils.nomeDeArquivo
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
-import java.text.SimpleDateFormat
-import java.util.*
-
 
 class StorageUploadActivity : BaseActivity() {
 
@@ -40,13 +39,27 @@ class StorageUploadActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         btnUpload.setOnClickListener {
-            upload01()
+            upload()
         }
     }
 
-    private fun upload01(){
+    private fun upload() {
+        val dialogProgress = DialogProgress()
+        dialogProgress.show(supportFragmentManager, "")
         val reference = storage.reference.child("upload").child("imagens")
-
+        val nome = reference.child("IMG_"+ nomeDeArquivo()+".jpg")
+        val bitmap = (imgUpload.drawable as BitmapDrawable).bitmap
+        val bytes = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val uploadTask = nome.putBytes(bytes.toByteArray())
+            .addOnCompleteListener {task ->
+                dialogProgress.dismiss()
+                if (task.isSuccessful){
+                    AlertDialogUtil.init(this).sucesso("imagem enviada")
+                } else {
+                    AlertDialogUtil.init(this).erro("erro ao enviar imagem")
+                }
+            }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -66,37 +79,21 @@ class StorageUploadActivity : BaseActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun getImageFromCameraBITMAP() {
-        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { intent ->
-            intent.resolveActivity(packageManager)?.also {
-                startActivityForResult(intent, CAMERA)
-            }
-        }
-    }
-
-    private fun getImageFromCamera(){
+    private fun getImageFromCamera() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
             takePictureIntent.resolveActivity(packageManager)?.also {
-                val photoFile: File? = try {
-                    createImageFile()
+                try {
+                    FileProvider.getUriForFile(this, PROVIDER, createImageFile()).also { uri ->
+                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
+                        startActivityForResult(takePictureIntent, CAMERA)
+                    }
                 } catch (ex: IOException) {
-                    Log.e(TAG, ex.stackTrace.toString())
-                    null
+                    Log.e(TAG, "getImageFromCamera: ${ex.stackTrace}")
                 }
-                photoFile?.also {
-                    val photoURI: Uri = FileProvider.getUriForFile(
-                        this,
-                        "ms.zem.firebasecompleto",
-                        it
-                    )
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                    startActivityForResult(takePictureIntent, CAMERA)
-                } ?: snack(layoutUpload, "erro ao criar foto")
             }
         }
     }
 
-    @SuppressLint("SimpleDateFormat")
     @Throws(IOException::class)
     private fun createImageFile(): File {
         val nome: String = nomeDeArquivo()
@@ -118,21 +115,25 @@ class StorageUploadActivity : BaseActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == GALERIA && resultCode == Activity.RESULT_OK && data != null){
-            data.data?.let { ImageDownloadUtil.downloadGlide(it, imgUpload) }
+        if (requestCode == GALERIA && resultCode == Activity.RESULT_OK && data != null) {
+            data.data?.let {uri ->
+                ImageDownloadUtil.downloadGlide(uri, imgUpload)
+            }
 
-        } else if (requestCode == CAMERA && resultCode == Activity.RESULT_OK){
-            val auxFile = File(currentPhotoPath)
-            val bitmap :Bitmap = BitmapFactory.decodeFile(currentPhotoPath)
-            imgUpload.setImageBitmap(bitmap)
-
-            // BITMAP
-//            imgUpload.setImageBitmap(data.extras?.get("data") as Bitmap?)
+        } else if (requestCode == CAMERA && resultCode == Activity.RESULT_OK) {
+            currentPhotoPath.let {
+                File(currentPhotoPath).also { file ->
+                    Uri.fromFile(file).also { uri ->
+                        ImageDownloadUtil.downloadGlide(uri, imgUpload)
+                    }
+                }
+            }
         }
     }
 
-    companion object{
+    companion object {
         const val TAG = "UploadActivity"
+        const val PROVIDER = "ms.zem.firebasecompleto"
         const val GALERIA = 1
         const val CAMERA = 2
     }

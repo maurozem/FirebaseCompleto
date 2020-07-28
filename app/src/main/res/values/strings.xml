@@ -60,5 +60,6 @@
     <string name="tirar_foto">tirar foto</string>
     <string name="camera">câmera</string>
     <string name="obter_imagem">obter imagem</string>
+    <string name="aguarde">Aguarde...</string>
 
 </resources>
