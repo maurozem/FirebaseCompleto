@@ -17,7 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.storage.StorageUploadActivity"
+        <activity android:name=".database.DatabaseLerDadosActivity"></activity>
+        <activity
+            android:name=".ui.storage.StorageUploadActivity"
             android:parentActivityName=".ui.menu.MenuActivity" />
         <activity
             android:name=".ui.storage.StorageDownloadActivity"

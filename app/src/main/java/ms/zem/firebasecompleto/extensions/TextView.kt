@@ -2,6 +2,7 @@ package ms.zem.firebasecompleto.extensions
 
 import android.widget.TextView
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.database.DataSnapshot
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
@@ -31,5 +32,17 @@ fun TextView.toDate(formato: String = "dd/MM/yyyy"): Date{
         data ?: Date()
     } catch (e: Exception){
         Date()
+    }
+}
+
+fun TextView.snapshot(snapshot: DataSnapshot){
+    if (snapshot.exists()){
+        if (snapshot.value is String){
+            this.text = snapshot.value as String
+        } else {
+            this.text = snapshot.value.toString()
+        }
+    } else {
+        this.text = null
     }
 }

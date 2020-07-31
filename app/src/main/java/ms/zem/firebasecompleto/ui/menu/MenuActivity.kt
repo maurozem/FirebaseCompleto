@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_menu.*
 import ms.zem.firebasecompleto.R
+import ms.zem.firebasecompleto.database.DatabaseLerDadosActivity
 import ms.zem.firebasecompleto.ui.BaseActivity
 import ms.zem.firebasecompleto.ui.storage.StorageDownloadActivity
 import ms.zem.firebasecompleto.ui.storage.StorageUploadActivity
@@ -23,7 +24,7 @@ class MenuActivity : BaseActivity() {
             startActivity(Intent(this, StorageUploadActivity::class.java))
         }
         btnLer.setOnClickListener {
-
+            startActivity(Intent(this, DatabaseLerDadosActivity::class.java))
         }
         btnAtualizar.setOnClickListener {
 
