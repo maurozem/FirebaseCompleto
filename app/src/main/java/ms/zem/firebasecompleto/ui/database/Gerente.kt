@@ -1,4 +1,4 @@
-package ms.zem.firebasecompleto.database
+package ms.zem.firebasecompleto.ui.database
 
 import com.google.firebase.database.IgnoreExtraProperties
 

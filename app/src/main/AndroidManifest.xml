@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".database.DatabaseLerDadosActivity"></activity>
+        <activity android:name=".ui.database.DatabaseAtualizarActivity"></activity>
+        <activity android:name=".ui.database.DatabaseLerDadosActivity" />
         <activity
             android:name=".ui.storage.StorageUploadActivity"
             android:parentActivityName=".ui.menu.MenuActivity" />

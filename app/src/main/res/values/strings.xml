@@ -62,5 +62,9 @@
     <string name="obter_imagem">obter imagem</string>
     <string name="aguarde">Aguarde...</string>
     <string name="fumante">fumante</string>
+    <string name="salvar">Salvar</string>
+    <string name="excluir">excluir</string>
+    <string name="incluir">incluir</string>
+    <string name="pasta">pasta</string>
 
 </resources>

@@ -6,8 +6,9 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_menu.*
 import ms.zem.firebasecompleto.R
-import ms.zem.firebasecompleto.database.DatabaseLerDadosActivity
+import ms.zem.firebasecompleto.ui.database.DatabaseLerDadosActivity
 import ms.zem.firebasecompleto.ui.BaseActivity
+import ms.zem.firebasecompleto.ui.database.DatabaseAtualizarActivity
 import ms.zem.firebasecompleto.ui.storage.StorageDownloadActivity
 import ms.zem.firebasecompleto.ui.storage.StorageUploadActivity
 import ms.zem.firebasecompleto.utils.Permissao
@@ -27,7 +28,7 @@ class MenuActivity : BaseActivity() {
             startActivity(Intent(this, DatabaseLerDadosActivity::class.java))
         }
         btnAtualizar.setOnClickListener {
-
+            startActivity(Intent(this, DatabaseAtualizarActivity::class.java))
         }
         btnEmpresas.setOnClickListener {
 
