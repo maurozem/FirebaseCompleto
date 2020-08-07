@@ -4,10 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.widget.TextView
 import com.google.android.gms.tasks.Task
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import ms.zem.firebasecompleto.extensions.snapshot
 
 class DatabaseUtil {
@@ -17,6 +14,10 @@ class DatabaseUtil {
     private lateinit var snapshot: DataSnapshot
 
     lateinit var sucesso: (snapshot: DataSnapshot) -> Unit
+
+    fun setChildEventListener(listener: ChildEventListener){
+        reference.addChildEventListener(listener)
+    }
 
     private var valueEventListener = object : ValueEventListener{
         override fun onDataChange(snapshot: DataSnapshot) {

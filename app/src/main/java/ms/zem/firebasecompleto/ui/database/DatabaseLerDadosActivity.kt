@@ -3,7 +3,7 @@ package ms.zem.firebasecompleto.ui.database
 import android.os.Bundle
 import com.google.firebase.database.ktx.getValue
 import kotlinx.android.synthetic.main.activity_database_ler_dados.*
-import ms.zem.firebasecompleto.DatabaseActivity
+import ms.zem.firebasecompleto.ui.DatabaseActivity
 import ms.zem.firebasecompleto.R
 
 class DatabaseLerDadosActivity : DatabaseActivity() {

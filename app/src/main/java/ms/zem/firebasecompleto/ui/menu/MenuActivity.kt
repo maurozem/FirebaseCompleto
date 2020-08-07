@@ -9,6 +9,7 @@ import ms.zem.firebasecompleto.R
 import ms.zem.firebasecompleto.ui.database.DatabaseLerDadosActivity
 import ms.zem.firebasecompleto.ui.BaseActivity
 import ms.zem.firebasecompleto.ui.database.DatabaseAtualizarActivity
+import ms.zem.firebasecompleto.ui.empresa.ListaEmpresaActivity
 import ms.zem.firebasecompleto.ui.storage.StorageDownloadActivity
 import ms.zem.firebasecompleto.ui.storage.StorageUploadActivity
 import ms.zem.firebasecompleto.utils.Permissao
@@ -31,7 +32,7 @@ class MenuActivity : BaseActivity() {
             startActivity(Intent(this, DatabaseAtualizarActivity::class.java))
         }
         btnEmpresas.setOnClickListener {
-
+            startActivity(Intent(this, ListaEmpresaActivity::class.java))
         }
         permissoes()
     }

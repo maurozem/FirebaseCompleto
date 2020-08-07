@@ -3,7 +3,7 @@ package ms.zem.firebasecompleto.ui.database
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_database_atualizar.*
 import kotlinx.android.synthetic.main.toolbar.toolbar
-import ms.zem.firebasecompleto.DatabaseActivity
+import ms.zem.firebasecompleto.ui.DatabaseActivity
 import ms.zem.firebasecompleto.R
 
 class DatabaseAtualizarActivity : DatabaseActivity() {

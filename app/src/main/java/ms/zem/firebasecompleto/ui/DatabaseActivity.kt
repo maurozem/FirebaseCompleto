@@ -1,6 +1,5 @@
-package ms.zem.firebasecompleto
+package ms.zem.firebasecompleto.ui
 
-import ms.zem.firebasecompleto.ui.BaseActivity
 import ms.zem.firebasecompleto.utils.DatabaseUtil
 
 open class DatabaseActivity: BaseActivity() {

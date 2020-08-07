@@ -66,5 +66,6 @@
     <string name="excluir">excluir</string>
     <string name="incluir">incluir</string>
     <string name="pasta">pasta</string>
+    <string name="lista_de_empresas">Lista de empresas</string>
 
 </resources>
